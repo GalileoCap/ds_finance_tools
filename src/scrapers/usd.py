@@ -1,4 +1,4 @@
-from util import cfg
+from util.cfg import CFG, get_data_dir
 from util.misc import *
 from util.download_data import *
 import requests
@@ -15,7 +15,7 @@ def set_file_csv_lol(fpath, lol): #U: Writes a list of lists as a csv
 def usdblue_url(desde = None, hasta = None): #U: url to download json from Ambito 
 	desde = datetime(2018, 1, 1) if desde is None else desde
 	hasta = datetime.today() if hasta is None else hasta
-	return cfg.USDBlue_url_base + desde.strftime('%d-%m-%Y') + '/' + hasta.strftime('%d-%m-%Y')
+	return CFG.USDBlue_url_base + desde.strftime('%d-%m-%Y') + '/' + hasta.strftime('%d-%m-%Y')
 
 def get_usd_blue(anio_desde = 2018, anio_hasta = None): #U: Downloads usdblue prices and stores it as a csv 
 	anio_hoy = datetime.today().year
@@ -23,7 +23,7 @@ def get_usd_blue(anio_desde = 2018, anio_hasta = None): #U: Downloads usdblue pr
 
 
 	for anio in range(anio_desde, anio_hasta+1):
-		fpath = f'{cfg.get_data_dir()}/USD_BLUE_{anio}.csv'
+		fpath = f'{get_data_dir()}/USD_BLUE_{anio}.csv'
 		url = None #A: Assigned only if we need to update with new data
 		if anio < anio_hoy and get_file_mtime(fpath) == 0: #A: We skip over the years we already have 
 			url = usdblue_url(datetime(anio, 1, 1),datetime(anio, 12, 31))
@@ -52,7 +52,7 @@ def get_usd_blue(anio_desde = 2018, anio_hasta = None): #U: Downloads usdblue pr
 				set_file_csv_lol(fpath, data) #A: Saving
 
 def get_usd_ccl(): #U: Downloads USDCCL data
-	get_url(cfg.USDCCL_url, cfg.get_data_dir() + '/USD_CCL.csv')
+	get_url(CFG.USDCCL_url, get_data_dir() + '/USD_CCL.csv')
 
 #**********************************************************************************************
 #EXAMPLE:

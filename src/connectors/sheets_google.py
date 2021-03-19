@@ -1,6 +1,6 @@
 #INFO: Easy access to Google Sheets
 
-from util import cfg
+from util.cfg import CFG
 from util.misc import *
 from util.pandas import *
 
@@ -24,7 +24,7 @@ def init_sheets():
 	global Sheet
 
 	credentials = service_account.Credentials.from_service_account_file(
-									cfg.service_account_file, scopes = cfg.google_scopes)
+									CFG.service_account_file, scopes = CFG.google_scopes)
 
 	Service = build('sheets', 'v4', credentials = credentials)
 	Sheet = Service.spreadsheets()

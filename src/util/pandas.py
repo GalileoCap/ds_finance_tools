@@ -19,3 +19,5 @@ def df_to_lol(df): #U: Converts a DataFrame into a list of lists
 	result = [tmp.columns.values.tolist()] + tmp.values.tolist()
 	return result
 
+
+

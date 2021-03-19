@@ -1,6 +1,6 @@
 #INFO: Easy way to get DataFrames downloading data if necessary
 
-from util import cfg
+from util.cfg import CFG, get_data_dir
 from util.misc import *
 from util.pandas import *
 from scrapers.binance_p2p import get_binance_p2p_csv
@@ -28,14 +28,14 @@ def get_binance_p2p_df(ticker= 'USDT', buyOrSell= 'BUY', fiat= 'ARS'): #U: p2p o
 
 def get_usdblue_df(): #U: Returns df with USDBlue prices
 	anio_hoy = datetime.today().year
-	fpath = cfg.get_data_dir() + f'/USD_BLUE_{anio_hoy}.csv'
+	fpath = get_data_dir() + f'/USD_BLUE_{anio_hoy}.csv'
 	df = pd.read_csv(fpath, sep = '\t', header = 0, index_col = None)
 	df.sort_values('fecha', inplace = True)
 	df.set_index('fecha', inplace = True)
 	return df
 
 def get_usdccl_df(): #U: Returns df with USDCCL prices
-	fpath = cfg.get_data_dir() + '/USD_CCL.csv'
+	fpath = get_data_dir() + '/USD_CCL.csv'
 	tmp_df = pd.read_csv(fpath, sep = ',', header = 0, index_col = None)
 	df = tmp_df >> select(X.fecha, X.cierre) >> rename(usd_ccl = X.cierre) #U: Simple version
 	df.sort_values('fecha', inplace = True)
@@ -48,7 +48,7 @@ def get_cedears_df(): #U: Returns a dict of df for all CEDEARS
 	stocks = {}
 	cedears = {}
 
-	for ticker in cfg.Tickers:
+	for ticker in CFG.Tickers:
 		df_usa = get_stock_df(ticker)
 		if df_usa.columns[0] != 'Date':
 			print(f'ERROR no data from USA for {ticker}')
@@ -62,7 +62,7 @@ def get_cedears_df(): #U: Returns a dict of df for all CEDEARS
 
 		df >>= left_join(get_usdccl_df(), by = 'fecha', suffixes = ['', 'ccl']) #A: Added usd_ccl to each date
 
-		ratio = cfg.Ratios[ticker]
+		ratio = CFG.Ratios[ticker]
 		if ratio is None:
 			print(f'ERROR there\'s no RATIO for {ticker}, assuming 1')
 			ratio = 1
@@ -72,7 +72,7 @@ def get_cedears_df(): #U: Returns a dict of df for all CEDEARS
 		if not (df_usa is None):
 			df >>= left_join(df_usa, by = 'fecha')
 		
-		for days in cfg.MA_days: #A: Moving averages
+		for days in CFG.MA_days: #A: Moving averages
 			df[f'ma{days}_ccl'] = df['cierre_ccl'].rolling(days, min_periods = 1).mean()
 			df[f'ma{days}_usa'] = df['Close'].rolling(days, min_periods = 1).mean()
 			df[f'min{days}_ccl'] = df['cierre_ccl'].rolling(days, min_periods = 1).min()

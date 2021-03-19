@@ -1,4 +1,4 @@
-from util import cfg
+from util.cfg import CFG, get_data_dir
 from util.download_data import *
 
 #**********************************************************************************************
@@ -6,12 +6,12 @@ from util.download_data import *
 
 def cedear_url_name(ticker): #U: Generate rava url 
 	if len(ticker) < 5:
-		return cfg.Cedear_url_base+ticker
+		return CFG.Cedear_url_base+ticker
 	else:
-		return cfg.Cedear_url_base[0:4-len(ticker)]+ticker
+		return CFG.Cedear_url_base[0:4-len(ticker)]+ticker
 
 def get_cedear(ticker): #U: Returns the updated data for this ticker's CEDEAR
-	url = get_url(cedear_url_name(ticker), cfg.get_data_dir()+'/'+ticker+'_CEDEAR.csv')
+	url = get_url(cedear_url_name(ticker), get_data_dir()+'/'+ticker+'_CEDEAR.csv')
 	print('get_cedear_df', ticker, url)
 	return url
 
@@ -19,5 +19,5 @@ def get_cedear(ticker): #U: Returns the updated data for this ticker's CEDEAR
 #EXAMPLE:
 
 if __name__ == '__main__':
-	for ticker in cfg.Tickers:
+	for ticker in CFG.Tickers:
 		get_cedear(ticker)

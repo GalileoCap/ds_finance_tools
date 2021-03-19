@@ -1,6 +1,6 @@
 #INFO: Generic functions for downloading
 
-from util import cfg #U: Common settings for our modules
+from util.cfg import CFG, get_data_dir #U: Common settings for our modules
 from util.misc import *
 import os
 import requests
@@ -23,4 +23,4 @@ def get_url(url, fpath): #U: Updates the file with the data from the url if olde
 if __name__ == '__main__':
 	url = 'https://www.rava.com/empresas/precioshistoricos.php?e=DOLAR%20CCL&csv=1' #U: Url to the csv
 
-	get_url(url, cfg.get_data_dir()+'/USD_MEP.csv')
+	get_url(url, get_data_dir()+'/USD_MEP.csv')

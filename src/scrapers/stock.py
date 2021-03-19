@@ -1,4 +1,4 @@
-from util import cfg
+from util.cfg import CFG, get_data_dir
 from util.misc import *
 import pandas_datareader.data as web
 
@@ -9,7 +9,7 @@ def get_stock(ticker): #U: Returns the updated data for this ticker from USA
 	ticker = 'DIS.US' if ticker == 'DISN' else ticker #A: See https://stooq.com/q/a2/?s=dis.us
 
 	print(f'get_stock_usa {ticker}')
-	path = cfg.get_data_dir()+'/'+ticker+'_USD_stooq.csv'
+	path = get_data_dir()+'/'+ticker+'_USD_stooq.csv'
 
 	if not isFromToday_file(path):
 		#A: We have to update the file
