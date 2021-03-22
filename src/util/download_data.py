@@ -1,5 +1,9 @@
 #INFO: Generic functions for downloading
 
+import os
+import sys
+sys.path.insert(1, os.path.abspath(__file__+'/../../')) #A: Where you installed the library
+
 from util.cfg import CFG, get_data_dir #U: Common settings for our modules
 from util.misc import *
 import os

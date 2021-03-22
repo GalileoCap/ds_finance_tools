@@ -1,8 +1,12 @@
 #INFO: Easy access to Google Sheets
 
+import os
+import sys
+sys.path.insert(1, os.path.abspath(__file__+'/../../')) #A: Where you installed the library
+
 from util.cfg import CFG
 from util.misc import *
-from util.pandas import *
+from util._pandas import *
 
 from google.oauth2 import service_account
 from googleapiclient.discovery import build

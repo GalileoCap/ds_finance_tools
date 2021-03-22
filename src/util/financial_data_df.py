@@ -1,8 +1,12 @@
 #INFO: Easy way to get DataFrames downloading data if necessary
 
+import os
+import sys
+sys.path.insert(1, os.path.abspath(__file__+'/../../')) #A: Where you installed the library
+
 from util.cfg import CFG, get_data_dir
 from util.misc import *
-from util.pandas import *
+from util._pandas import *
 from scrapers.binance_p2p import get_binance_p2p_csv
 from scrapers.cedear import *
 from scrapers.stock import *

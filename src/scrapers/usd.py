@@ -1,3 +1,9 @@
+#INFO: download usd to ars prices, may be used as main
+
+import os
+import sys
+sys.path.insert(1, os.path.abspath(__file__+'/../../')) #A: Where you installed the library
+
 from util.cfg import CFG, get_data_dir
 from util.misc import *
 from util.download_data import *
