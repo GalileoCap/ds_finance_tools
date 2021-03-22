@@ -3,6 +3,18 @@
 Convenient scripts to scrap and analyse financial data  
 You can see it at work without installing on [Google Colab](https://colab.research.google.com/drive/18YDibEYh_BRFnh7qbnJ8JxdwVPa2sUc_?usp=sharing)
 
+## Installing
+~~~
+#It's recommended that you create a virtual environment first
+python3 -m venv finances
+cd finances
+source bin/activate
+#If you don't want to use a virtual environment, you can skip to this step
+git clone https://github.com/GalileoCap/ds_finance_tools.git
+cd ds_finance_tools
+pip install -r requirements.txt
+~~~
+
 ## Analysis
 In the file `src/app/demo/analysis/run_analyze_positions.py` you can see an example of how this scripts can be used to keep a tab on your positions and get trade recommendations as an email
 
