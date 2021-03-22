@@ -21,7 +21,6 @@ def get_usd_blue(anio_desde = 2018, anio_hasta = None): #U: Downloads usdblue pr
 	anio_hoy = datetime.today().year
 	anio_hasta = anio_hoy if anio_hasta is None else anio_hasta 
 
-
 	for anio in range(anio_desde, anio_hasta+1):
 		fpath = f'{get_data_dir()}/USD_BLUE_{anio}.csv'
 		url = None #A: Assigned only if we need to update with new data
@@ -51,8 +50,12 @@ def get_usd_blue(anio_desde = 2018, anio_hasta = None): #U: Downloads usdblue pr
 				#A: Formatted for pandas 
 				set_file_csv_lol(fpath, data) #A: Saving
 
+	return fpath #A: The newest
+
 def get_usd_ccl(): #U: Downloads USDCCL data
-	get_url(CFG.USDCCL_url, get_data_dir() + '/USD_CCL.csv')
+	fpath = f'{get_data_dir()}/USD_CCL.csv'
+	get_url(CFG.USDCCL_url, fpath)
+	return fpath
 
 #**********************************************************************************************
 #EXAMPLE:

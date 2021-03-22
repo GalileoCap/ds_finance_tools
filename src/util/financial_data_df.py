@@ -6,6 +6,7 @@ from util.pandas import *
 from scrapers.binance_p2p import get_binance_p2p_csv
 from scrapers.cedear import *
 from scrapers.stock import *
+from scrapers.usd import *
 
 import pandas as pd
 from dfply import *
@@ -27,15 +28,14 @@ def get_binance_p2p_df(ticker= 'USDT', buyOrSell= 'BUY', fiat= 'ARS'): #U: p2p o
 	return df
 
 def get_usdblue_df(): #U: Returns df with USDBlue prices
-	anio_hoy = datetime.today().year
-	fpath = get_data_dir() + f'/USD_BLUE_{anio_hoy}.csv'
+	fpath = get_usd_blue() 
 	df = pd.read_csv(fpath, sep = '\t', header = 0, index_col = None)
 	df.sort_values('fecha', inplace = True)
 	df.set_index('fecha', inplace = True)
 	return df
 
 def get_usdccl_df(): #U: Returns df with USDCCL prices
-	fpath = get_data_dir() + '/USD_CCL.csv'
+	fpath = get_usd_ccl() 
 	tmp_df = pd.read_csv(fpath, sep = ',', header = 0, index_col = None)
 	df = tmp_df >> select(X.fecha, X.cierre) >> rename(usd_ccl = X.cierre) #U: Simple version
 	df.sort_values('fecha', inplace = True)
