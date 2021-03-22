@@ -6,7 +6,7 @@ sys.path.insert(1, os.path.abspath(__file__+'/../../../../')) #A: Where you inst
 
 from util.cfg import CFG
 from util.financial_data_df import *
-from util.pandas import *
+from util._pandas import *
 from util.misc import *
 from connectors.sheets_google import *
 from analysis.basic import *

@@ -1,5 +1,11 @@
+#INFO: Analyzes the moving averages of your positions
+
+import os
+import sys
+sys.path.insert(1, os.path.abspath(__file__+'/../../')) #A: Where you installed the library
+
 from util.cfg import CFG
-from util.pandas import *
+from util._pandas import *
 from util.misc import *
 import pandas as pd
 
