@@ -1,6 +1,7 @@
 # Finance Tools
 
-Convenient scripts to scrap and analyse financial data
+Convenient scripts to scrap and analyse financial data  
+You can see it at work without installing on [Google Colab](https://colab.research.google.com/drive/18YDibEYh_BRFnh7qbnJ8JxdwVPa2sUc_?usp=sharing)
 
 ## Analysis
 In the file `src/app/demo/analysis/run_analyze_positions.py` you can see an example of how this scripts can be used to keep a tab on your positions and get trade recommendations as an email
