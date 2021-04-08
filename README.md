@@ -1,13 +1,7 @@
 # Finance Tools
 
-<<<<<<< HEAD
 Convenient scripts to scrap and analyse financial data.  
 Download and follow stock prices from the US and Argentina.  
-
-  
-=======
-Convenient scripts to scrap and analyze financial data  
->>>>>>> bfb996ddc2c14089d75e11788bf23cf4802bd40d
 You can see it at work without installing on [Google Colab](https://colab.research.google.com/drive/18YDibEYh_BRFnh7qbnJ8JxdwVPa2sUc_?usp=sharing)
 
 ## Installing
@@ -45,22 +39,13 @@ They can both be used on their own
 You can send emails through an SMTP server  
 To set up you need to configure the SMTP info, the sender address, and the receiving addresses in `.env.json`
 
-<<<<<<< HEAD
 ### Read and write to Google Sheets
 You can get data from and update spreadsheets on Google Sheets  
-=======
-### sheets_google
-Used to read and update spreadsheets on Google Sheets.  
->>>>>>> bfb996ddc2c14089d75e11788bf23cf4802bd40d
 To set up:
 * Create a an app on the [Google Cloud Platform](https://console.cloud.google.com/)
 * Under "APIs & Services" go to "Credentials" and create a service account with owner access
 * Then go to the new service account and add a new json key to it
 * Download the json and save it as `.service.json` on the path from where you'll be running the scripts
 
-<<<<<<< HEAD
 ## Analysis
 In the file `src/app/demo/analysis/run_analyze_positions.py` you can see an example of how this scripts can be used to keep a tab on your positions and get trade recommendations as an email
-=======
->>>>>>> bfb996ddc2c14089d75e11788bf23cf4802bd40d
-
