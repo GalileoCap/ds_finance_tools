@@ -1,4 +1,4 @@
-# Finance Tools
+# Finance Tools  
 
 Convenient scripts to scrap and analyse financial data.  
 Download and follow stock prices from the US and Argentina.  
