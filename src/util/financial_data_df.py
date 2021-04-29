@@ -81,8 +81,8 @@ def get_cedears_df(): #U: Returns a dict of df for all CEDEARS
 			df[f'ma{days}_usa'] = df['Close'].rolling(days, min_periods = 1).mean()
 			df[f'min{days}_ccl'] = df['cierre_ccl'].rolling(days, min_periods = 1).min()
 			df[f'min{days}_usa'] = df['Close'].rolling(days, min_periods = 1).min()
-			df[f'max{days}_ccl'] = df['cierre_ccl'].rolling(days, max_periods = 1).max()
-			df[f'max{days}_usa'] = df['Close'].rolling(days, max_periods = 1).max()
+			df[f'max{days}_ccl'] = df['cierre_ccl'].rolling(days, min_periods = 1).max()
+			df[f'max{days}_usa'] = df['Close'].rolling(days, min_periods = 1).max()
 			#A: Rolling returns the values for each window, I can apply a function for series
 
 			df[f'ma{days}_ccl_dpct'] = (df[f'ma{days}_ccl'] - df['cierre_ccl']) / df['cierre_ccl']
