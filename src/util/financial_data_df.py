@@ -83,6 +83,21 @@ def get_cedears_df(): #U: Returns a dict of df for all CEDEARS
 			df[f'min{days}_usa'] = df['Close'].rolling(days, min_periods = 1).min()
 			#A: Rolling returns the values for each window, I can apply a function for series
 
+			df[f'ma{days}_ccl_dpct'] = (df[f'ma{days}_ccl'] - df['cierre_ccl']) / df['cierre_ccl']
+			df[f'min{days}_ccl_dpct'] = (df[f'min{days}_ccl'] - df['cierre_ccl']) / df['cierre_ccl']
+			df[f'max{days}_ccl_dpct'] = (df[f'max{days}_ccl'] - df['cierre_ccl']) / df['cierre_ccl']
+			df[f'ma{days}_usa_dpct'] = (df[f'ma{days}_usa'] - df['Close']) / df['Close']
+			df[f'min{days}_usa_dpct'] = (df[f'min{days}_usa'] - df['Close']) / df['Close']
+			df[f'max{days}_usa_dpct'] = (df[f'max{days}_usa'] - df['Close']) / df['Close']
+			#A: Pct distance from the averages
+
+		df['ema12_ccl'] = df['cierre_ccl'].ewm(span = 12, min_periods = 1).mean()
+		df['ema26_ccl'] = df['cierre_ccl'].ewm(span = 26, min_periods = 1).mean()
+		df['macd_ccl'] = df['ema12_ccl'] - df['ema26_ccl']
+		df['ema12_usa'] = df['Close'].ewm(span = 12, min_periods = 1).mean()
+		df['ema26_usa'] = df['Close'].ewm(span = 26, min_periods = 1).mean()
+		df['macd_usa'] = df['ema12_usa'] - df['ema26_usa']
+
 		df['cierre_pct'] = df['cierre'].pct_change()
 		df['cierre_ccl_pct'] = df['cierre_ccl'].pct_change()
 	 
